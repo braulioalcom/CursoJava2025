@@ -2,7 +2,7 @@ package org.interfaz.crud;
 
 import org.interfaz.ListadoDeProductos;
 import org.interfaz.entities.Productos;
-import org.interfaz.entities.audit;
+import org.interfaz.entities.Audit;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,11 +23,12 @@ public class ProductosCRUD {
         for (Productos p: listProductos){
             if (p.getId().equals(id)){
                 listProductos.remove(p);
-                audit a = new audit();
-                a.setFecha(LocalDateTime.now());
-                a.setAccion("Se ha eliminado el producto con ID: " + id);
-                System.out.println(a.toString());
-                break;
+
+               new Audit()
+                       .setFecha(LocalDateTime.now())
+                       .setAccion("Se ha eliminado el producto con ID: " + id)
+                       .print();
+               break;
             }
         }
     }
@@ -40,7 +41,12 @@ public class ProductosCRUD {
         p.setDescripcion(descripcion);
         p.setPrecioProveedor(precioProveedor);
         p.setPrecioCliente(precioCliente);
+        new Audit()
+                .setFecha(LocalDateTime.now())
+                .setAccion("Se agrego o Modifico el producto con ID: " + p.toString())
+                .print();
         listProductos.add(p);
+
     }
 
     /**
@@ -48,7 +54,7 @@ public class ProductosCRUD {
      * @return List<Productos>
      */
     public static List<Productos> getListProductos() {
-        
+        //Se muestra en otra parte de la pantalla la lista de productos.
         return listProductos;
     }
 

@@ -2,7 +2,7 @@ package org.interfaz;
 
 import org.interfaz.crud.ProductosCRUD;
 import org.interfaz.entities.Productos;
-import org.interfaz.entities.audit;
+import org.interfaz.entities.Audit;
 import org.interfaz.util.StringTable;
 
 import java.time.LocalDateTime;
@@ -33,7 +33,7 @@ public class Main {
                     realizarConsulta(crud);
                     break;
                 case "4":
-                    audit a = new audit();
+                    Audit a = new Audit();
                     a.setFecha(LocalDateTime.now());
                     a.setAccion("Saliendo de la aplicación");
                     System.out.println(a.toString());
@@ -76,7 +76,7 @@ public class Main {
 
             ProductosCRUD.altaOModificacion(id, nombre, descripcion, precioProveedor, precioCliente);
 
-            audit a = new audit();
+            Audit a = new Audit();
             a.setFecha(LocalDateTime.now());
             a.setAccion("Alta realizada para producto ID: " + id);
             System.out.println(a.toString());
@@ -95,7 +95,7 @@ public class Main {
 
     private static void realizarConsulta(ProductosCRUD crud) {
         List<Productos> lista = ProductosCRUD.getListProductos();
-        audit a = new audit();
+        Audit a = new Audit();
         a.setFecha(LocalDateTime.now());
         a.setAccion("Consulta de productos (" + lista.size() + ")");
         System.out.println(a.toString());

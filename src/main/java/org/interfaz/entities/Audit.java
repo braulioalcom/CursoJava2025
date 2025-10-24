@@ -3,41 +3,48 @@ package org.interfaz.entities;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class audit {
+/**
+ * Esta clase sirve para registrar los cambios realizados a nivel consola.
+ */
+public class Audit {
     private Integer id;
     private LocalDateTime fecha;
     private String accion;
 
-    public audit() {}
+    /**
+     * Audita segun los parametros seteados.
+     */
+    public Audit() {}
 
-    public audit(Integer id, LocalDateTime fecha, String accion) {
+    public Audit(Integer id, LocalDateTime fecha, String accion) {
         this.id = id;
         this.fecha = fecha;
         this.accion = accion;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
+    public Audit setId(Integer id) {
         this.id = id;
+        return this;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
 
-    public void setFecha(LocalDateTime fecha) {
+    public Audit setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
+        return this;
     }
 
-    public String getAccion() {
-        return accion;
-    }
 
-    public void setAccion(String accion) {
+    public Audit setAccion(String accion) {
         this.accion = accion;
+        return this;
+    }
+
+    /**
+     * Imprime en consola los resultados.
+     */
+    public void print() {
+        System.out.println(this.toString());
     }
 
     @Override
